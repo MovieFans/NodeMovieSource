@@ -6,7 +6,7 @@ var bcrypt = require('bcrypt-nodejs');
 var SALT_WORK_FACTOR = 10;
 
 var UserSchema = new mongoose.Schema({
-	name: {
+	username: {
 		unique: true,
 		type: String
 	},
@@ -50,3 +50,11 @@ UserSchema.pre('save', function(next) {
 		});
 	});
 })
+
+UserSchema.statics = {
+	findById: function(id, callback) {
+		return this.findOne({_id: id}).exec(callback);
+	}
+}
+
+module.exports = UserSchema;
