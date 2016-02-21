@@ -1,0 +1,44 @@
+extends ../layout
+
+block content
+	div(class='site-nav')
+		a(href='#',class='lk-site')
+			img(src='/libs/img/lg_account.png',alt='豆瓣')
+		div(class='wrapper')
+			h1 #{title}
+			form(method='post',action='')
+				div(class='item extra-tips')
+					ladel(class='label') 邮箱
+					input(id='email',name='email',class='basic-input',maxlength='60',tabindex='1')
+				div(class='item extra-tips')
+					ladel(class='label') 密码
+					input(id='password',name='password',class='basic-input',maxlength='60',tabindex='2')
+				div(class='item extra-tips')
+					ladel(class='label') 名号
+					input(id='name',name='name',class='basic-input',maxlength='60',tabindex='3')
+				div(class='tips') 第一印象很重要，起个响亮的名号吧
+				div(class='item loc-item')
+					ladel(class='label') 常居地
+					span(class='loc')
+						em(id='location') 豆瓣猜你在<strong>深圳</strong>，没猜对？
+						a(href='#',class='a-location',id='edloc') 手动选择
+				div(class='item')
+					ladel(class='label') 手机号
+					input(id='verify_phone',name='verify_phone',class='basic-input',maxlength='60',tabindex='1')
+				div(class='tips') 用手机接收注册验证码
+				div(class='item captcha-item')
+					label(class='label') 验证码
+					input(id='code',name='code',type='text',class='basic-input small',maxlength='10',tabindex='2')
+					input(id='request-phone-code-btn',type='submit',value='获取验证码')
+				div(class='item')
+					p(class='agreement')
+						label(for='agreement',class='agreement-label')
+							input(type='checkbox',id='agreement',tabindex='5')
+							span 我已经认真阅读并同意豆瓣的《
+							a(target='_blank',href='#') 使用协议
+							span 》。
+				div(class='item-submit')
+					input(type='submit',name='register',value='注册',id='button',class='btn-submit disabled',disabled='disabled',title='阅读并同意豆瓣的《使用协议》方可注册。')
+
+
+

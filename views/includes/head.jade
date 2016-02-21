@@ -1,0 +1,30 @@
+//Created by Roderick on 2016/2/16.
+extends ../layout
+block content
+    div(class="global-nav")
+        ul
+            mixin parameters(name,url)
+                li
+                    a(href="#{url}") #{name}
+            +parameters('豆瓣','http://www.douban.com/')
+            +parameters('读书','http://book.douban.com/')
+            +parameters('电影','http://movie.douban.com/')
+            +parameters('音乐','#')
+            +parameters('同城','#')
+            +parameters('小组','#')
+            +parameters('阅读','#')
+            +parameters('FM','#')
+            +parameters('东西','#')
+            +parameters('市集','#')
+            +parameters('更多','#')
+        div(class="sign-nav")
+            a(class="nav-login",href="#") 登录
+            a(class="nav-register",href="/user/signup") 注册
+
+
+
+
+
+
+
+
