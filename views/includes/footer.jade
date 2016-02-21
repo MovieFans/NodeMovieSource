@@ -1,1 +1,8 @@
 extends ../layout
+block content
+	div(id='footer')
+		span(id='icp',class='fleft gray-link') © 2005－2016 douban.com, all rights reserved 北京豆网科技有限公司
+		span(class='fright')
+			- var arrs = ['关于豆瓣','在豆瓣工作','联系我们','免责声明','帮助中心','移动应用','豆瓣广告'];
+			- each item in arrs
+				a(href='#') #{item}
