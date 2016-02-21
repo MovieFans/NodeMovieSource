@@ -2,6 +2,8 @@
  * Created by Roderick on 2016/2/20.
  */
 var mongoose = require('mongoose');
+var bcrypt = require('bcrypt-nodejs');
+var SALT_WORK_FACTOR = 10;
 
 var UserSchema = new mongoose.Schema({
 	name: {
@@ -28,5 +30,16 @@ var UserSchema = new mongoose.Schema({
 			default: Date.now()
 		}
 	}
+})
+
+UserSchema.pre('save', function(next) {
+	var user = this;
+
+	if(this.isNew) {
+		this.meta.createAt = this.meta.updateAt = Date.now
+	}else {
+		this.meta.updateAt = Date.now();
+	}
+
 
 })
