@@ -43,18 +43,18 @@ UserSchema.pre('save', function(next) {
 
 	bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
 		if(err) return next(err);
-		bcrypt.hash(user.password, salt, function(err, hash) {
+		bcrypt.hash(user.password, salt, null, function(err, hash) {
 			if(err) return next(err);
 			user.password = hash;
 			next();
 		});
 	});
-})
+});
 
 UserSchema.statics = {
 	findById: function(id, callback) {
 		return this.findOne({_id: id}).exec(callback);
 	}
-}
+};
 
 module.exports = UserSchema;
