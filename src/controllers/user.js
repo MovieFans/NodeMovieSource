@@ -13,6 +13,16 @@ exports.toSignUp = function (req, res) {
 }
 
 /**
+ * 登录页面
+ */
+exports.toSignIn = function(req, res){
+	res.render('user/sign_in', {
+		title: '登录豆瓣'
+	});
+}
+
+
+/**
  * 用户注册
  */
 exports.signup = function (req, res) {

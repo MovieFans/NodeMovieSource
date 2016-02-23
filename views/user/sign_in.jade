@@ -1,0 +1,35 @@
+extends ../layout
+
+block content
+	div(class='site-nav')
+		a(href='#',class='lk-site')
+			img(src='/libs/img/lg_account.png',alt='豆瓣')
+		div(class="wrapper")
+			h1 #{title}
+			form(method='post',action='/user/signup')
+				div(class="item-right")
+					a(href="#")	手机验证码登录
+				div(class='item extra-tips')
+					ladel(class='label') 账号
+					input(id='username',name='username',class='basic-input',maxlength='60',tabindex='1',placeholder='邮箱/手机号')
+				div(class='item extra-tips')
+					ladel(class='label') 密码
+					input(id='password',name='password',class='basic-input',maxlength='60',tabindex='1')
+				div(class='item')
+					ladel(class='label') &nbsp;
+					p(class="remember")
+						input(id="remember",name="remember",type='checkbox',tabindex='4')
+						label(for='remember',class='remember') 下次自动登录
+						span |
+						a(href='#')	忘记密码了
+				div(class='item')
+					input(name='login',class='btn-submit enabled',type='submit',value='登录',maxlength='60',tabindex='1')
+				div(class='item item-3rd')
+					label 第三方登录：
+					a(class='item-wechat',href='#',target='_top')
+						img(src='/libs/img/connect_wechat.png',title='微信')
+					a(class='item-weibo',href='#',target='_top')
+						img(src='/libs/img/connect_sina_weibo.png',title='微博')
+					a(class='item-qq',href='#',target='_top')
+						img(src='/libs/img/connect_qq.png',title='QQ')
+	include ../includes/footer

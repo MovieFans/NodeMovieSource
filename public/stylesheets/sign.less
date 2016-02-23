@@ -4,10 +4,13 @@
 @tip-color:#808080;
 @line-height:30px;
 @disbtn-color:#f0f0f0;
+@enable-color:#3fa156;
+@a-color:#666;
 
+input[type='checkbox']{margin:3px 3px 3px 4px;}
 .site-nav,.wrapper{width:950px;margin:0 auto 40px;overflow:hidden;}
 .site-nav a.lk-site{display:block;padding-top:@line-height;margin-bottom:40px;}
-.wrapper h1{display:block;margin:0;padding:0 0 15px 0;font-size:25px;font-weight:bold;color:#494949;line-height:1.1;}
+.wrapper h1{display:block;margin-top:-2px;padding:0 0 15px 0;font-size:25px;font-weight:bold;color:#494949;line-height:1.1;}
 .wrapper form{width:590px;margin-right:50px;float:left;}
 .item{margin:15px 0;clear:both;}
 .item .label{display:inline-block;float:left;margin-right:15px;text-align:right;width:60px;font-size:@font-size;line-height:@line-height;vertical-align:middle;}
@@ -16,15 +19,15 @@
 .loc{font-size:@small-size;line-height:@line-height;}
 #location{font-size:@small-size;color:@tip-color;font-style:normal;}
 #location strong{color: #111111;font-weight: normal;font-style: normal;}
-.loc a,.agreement-label a:visited {
+.loc a,.agreement-label a,.item-right a,.remember a:visited {
   color: #669;
   text-decoration: none;
 }
-.loc a,.agreement-label a:link {
+.loc a,.agreement-label a,.item-right a,.remember a:link {
   color: #369;
   text-decoration: none;
 }
-a {
+a ,.remember a,.item-right a{
   cursor: pointer;
 }
 .captcha-item .basic-input{width:95px;}
@@ -43,5 +46,40 @@ p.agreement{margin-left:75px;margin-top:70px;}
 .agreement-label{display:inline;width:auto;text-align:center;float:none;}
 .btn-submit{cursor:pointer;font-size:@font-size;font-weight:bold;padding: 6px 26px;-webkit-border-radius: 3px;margin-left:75px;margin-top:10px;}
 .disabled{color:#999;background:@disbtn-color;border:1px solid @border-color;}
-.enabled{color:#fff;background:#3fa156;border:1px solid #528641;}
+.enabled{color:#fff;background:@enable-color;border:1px solid #528641;}
 
+//登录页面部分代码
+.item-right{
+  text-align:right;
+  width:287px;
+  margin-bottom:-11px;
+  margin-top:16px;
+}
+.remember{
+  cursor:pointer;
+  font-size:12px;
+  display:inline;
+  width:auto;
+  text-align: left;
+  color:@a-color;
+  margin:0;
+}
+.remember span{padding:0 3px;}
+.item-3rd{
+  padding:5px 0;
+  width:200px;
+  margin:20px 0 0 75px;
+  border-top:1px solid #eee;
+  border-bottom:1px solid #eee;
+}
+.item-3rd{
+  display:inline-block;
+  float:left;
+  vertical-align: baseline;
+  font-size:12px;
+  color:@tip-color;
+}
+.item-3rd img{
+  margin:0 5px;
+  vertical-align:middle;
+}
