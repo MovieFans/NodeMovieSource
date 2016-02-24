@@ -46,3 +46,34 @@ exports.signup = function (req, res) {
 		}
 	});
 }
+
+/**
+ * 用户登录
+ */
+exports.signin = function(req, res){
+	var _user = req.body;
+	var name = _user.username;
+	var password = _user.password;
+
+	UserModel.findOne({username:_user.username},function(err,user){
+		if(err){
+			console.log(err);
+		}
+		if(!user){
+			return res.redirect('/signup');
+		}
+		user.comparePassword(password,function(err,isMatch){
+			if(err){
+				console.log(err);
+			}
+			if(isMatch){
+				//req.session.user = _user;
+				console.log('password is matched!');
+				return res.redirect('/');
+			}else{
+				console.log('password is not matched!');
+				return res.redirect('/signin');
+			}
+		});
+	});
+}

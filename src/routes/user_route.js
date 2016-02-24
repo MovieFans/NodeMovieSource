@@ -9,5 +9,6 @@ router.get('/signin', User.toSignIn);
 
 /* POST users listing. */
 router.post('/signup', User.signup);
+router.post('/signin',User.signin);
 
 module.exports = router;
