@@ -2,6 +2,33 @@ extends layout
 
 block content
 	include ./includes/head
-	h1= title
-	p Welcome to #{title}
+	div(id='db-nav-movie',class='nav')
+		div(class='nav=wrap')
+			div(class='nav-primary')
+				div(class='nav-logo')
+					a(href='#') 豆瓣电影
+				div(class='nav-search')
+					form(method='get',action='')
+						fieldset 搜索
+						label(for='inp-query',style='display:none') 电影、影人、影院、电视剧
+						div(class='inp')
+							input(id='inp-query',name='search-text',size='22',maxlength='60',placeholder='电影、影人、影院、电视剧',autocomplete='off')
+						div(class='inp-btn')
+							input(type='submit',value='搜索')
+					a(href='#',target='_blank',class='btn-filmawards')
+						img(src='/libs/img/xinxiang_6th_nav.png',alt='豆瓣电影观影报告')
+		div(class='nav-secondary')
+			div(class='nav-items nav-anon')
+				ul
+					mixin parameters(name,url)
+						li
+							a(href='#{url}') #{name}
+					+parameters('影讯&购票','#')
+					+parameters('选电影','#')
+					+parameters('电视剧','#')
+					+parameters('排行榜','#')
+					+parameters('分类','#')
+					+parameters('影评','#')
+					+parameters('2015年度榜单','#')
+					+parameters('豆瓣观影报告','#')
 	include ./includes/footer
