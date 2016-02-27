@@ -3,19 +3,21 @@ extends layout
 block content
 	include ./includes/head
 	div(id='db-nav-movie',class='nav')
-		div(class='nav=wrap')
+		div(class='nav-wrap')
 			div(class='nav-primary')
 				div(class='nav-logo')
 					a(href='#') 豆瓣电影
 				div(class='nav-search')
 					form(method='get',action='')
-						fieldset 搜索
-						label(for='inp-query',style='display:none') 电影、影人、影院、电视剧
-						div(class='inp')
-							input(id='inp-query',name='search-text',size='22',maxlength='60',placeholder='电影、影人、影院、电视剧',autocomplete='off')
-						div(class='inp-btn')
-							input(type='submit',value='搜索')
-					a(href='#',target='_blank',class='btn-filmawards')
+						fieldset
+							legend 搜索
+							label(for='inp-query',style='display:none') 电影、影人、影院、电视剧
+							div(class='inp')
+								input(id='inp-query',name='search-text',class='placeholder',size='22',maxlength='60',placeholder='电影、影人、影院、电视剧',autocomplete='off')
+							div(class='inp-btn')
+								input(type='submit',value='搜索')
+							input(type="hidden", name="cat", value="1002")
+					a(href='#',target='_blank',class='ban-filmawards')
 						img(src='/libs/img/xinxiang_6th_nav.png',alt='豆瓣电影观影报告')
 		div(class='nav-secondary')
 			div(class='nav-items nav-anon')
@@ -31,4 +33,23 @@ block content
 					+parameters('影评','#')
 					+parameters('2015年度榜单','#')
 					+parameters('豆瓣观影报告','#')
+	div(id='wrap')
+		div(id='content')
+			div(class='article')
+				div(id='screening',class='s')
+					div(class='screening-hd')
+						div(clss='slide-control')
+							span(class='prev-btn')
+								a(class='link-prev',href='#')
+							span(class='next-btn')
+								a(class='link-next',href='#')
+						div(class='slide-up')
+							span(class='ui-slide-index') 1
+							span /
+							span(class='ui-slide-max') 4
+						h2 正在热映
+							a(href='#',class='all-hot') 全部正在热映»
+							a(href='#',class='will-play') 即将上映»
+					div(class='screening-bd')
+			div(class='aside')
 	include ./includes/footer
