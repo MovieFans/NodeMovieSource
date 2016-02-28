@@ -3,6 +3,9 @@
 @gnav-minWid:950px;
 @nav-background:#f0f3f5;
 @a-bluecolor:#27A;
+@font-size:12px;
+@alinkcolor: #37a;
+@avisited:#669;
 
 *{margin:0;padding:0;}
 form{padding:0;margin:0;border:0;}
@@ -12,10 +15,10 @@ form{padding:0;margin:0;border:0;}
   background-color:@gnav-bg;
   min-width:@gnav-minWid;
 }
-.global-nav ul li{float:left;height:28px;line-height:28px;font-size:12px;}
-.global-nav ul li a{padding:0 12px;line-height:28px;}
+.global-nav ul li{float:left;height:28px;line-height:28px;font-size:@font-size;}
+.global-nav ul li a{padding:0 12px;line-height:28px;color:#d5d5d5}
 .global-nav ul li a:hover{color:#fff;}
-.global-nav .sign-nav{float:right;margin:0 12px 0 0;line-height:28px;font-size:12px;}
+.global-nav .sign-nav{float:right;margin:0 12px 0 0;line-height:28px;font-size:@font-size;}
 .global-nav .sign-nav a{diplay:inline-block;margin:0 12px;}
 .global-nav .sign-nav a:hover{color:#fff;}
 #db-nav-movie{background: @nav-background;}
@@ -107,19 +110,43 @@ a img{border-width:0;vertical-align: middle;}
 #content{min-height:420px;}
 .article{float:left;width:590px;padding-right:40px;}
 #screening{margin-bottom:36px;}
-.slide-control{
+.ui-slide-control{
   float:right;
   margin:5px 0 0 15px;
-  font-size:12px;
+  font-size:@font-size;
 }
-.slide-control span a{
+.ui-slide-control span a{
   display:block;
   float:left;
   width:18px;
   height:18px;
   margin-right:5px;
   cursor:pointer;
-  bckground:url('../libs/img/slide_swithc_2.png') no-repeat;
+  background:url('../libs/img/slide_swithc_2.png') no-repeat;
 }
 .ui-slide-control .link-prev{background-position: 0 0;}
 .ui-slide-control .link-next{background-position:-18px 0;}
+.slide-tip{float:right;line-height:30px;color:#666;font-size:@font-size;}
+#content h2{
+  color:#111;
+  padding-bottom:10px;
+  border-bottom:1px solid #eaeaea;
+  margin-bottom:18px;
+
+  a{
+    display:inline-block;
+    margin-left:15px;
+    font-size:12px;
+    color:@alinkcolor;
+    text-decoration: none;
+    cursor:pointer;
+    padding:0;
+  }
+  a:visited{
+    color:@avisited;
+    text-decoration: none;
+  }
+  a:hover{color:#fff;background:@a-bluecolor;}
+  }
+
+h2{font:15px Arial, Helvetica, sans-serif;margin:0 0 12px 0;line-height:150%;}
