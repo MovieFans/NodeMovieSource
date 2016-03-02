@@ -52,6 +52,19 @@ block content
 							a(href='#',class='will-play') 即将上映»
 					div(class='screening-bd')
 						ul(class='ui-slide-content',data-slide-index='1',data-slide-max='5')
-							li(class='ui-slide-item',data-title='安娜贝尔')
+							- for(var  i=0;i<18;i++){
+								li(class='ui-slide-item',data-title='安娜贝尔')
+									ul(class='poster')
+										a(href='#')
+											img(src='/libs/img/movie1.jpg',alt='安娜贝尔')
+										li(class='title')
+											a(href='#') 安娜贝尔
+										li(class='rating')
+											span(class='rating-star')
+											span(class='subject-rate') 5.4
+										li(class='ticket-btn')
+											span
+												a(href='#') 选座购票
+							- }
 			div(class='aside')
 	include ./includes/footer
