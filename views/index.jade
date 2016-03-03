@@ -18,7 +18,7 @@ block content
 								input(type='submit',value='搜索')
 							input(type="hidden", name="cat", value="1002")
 					a(href='#',target='_blank',class='ban-filmawards')
-						img(src='/libs/img/xinxiang_6th_nav.png',alt='豆瓣电影观影报告')
+						img(src='/img/xinxiang_6th_nav.png',alt='豆瓣电影观影报告')
 		div(class='nav-secondary')
 			div(class='nav-items nav-anon')
 				ul
@@ -54,15 +54,16 @@ block content
 						ul(class='ui-slide-content',data-slide-index='1',data-slide-max='5')
 							- for(var  i=0;i<18;i++){
 								li(class='ui-slide-item',data-title='安娜贝尔')
-									ul(class='poster')
-										a(href='#')
-											img(src='/libs/img/movie1.jpg',alt='安娜贝尔')
+									ul
+										li(class='poster')
+											a(href='#')
+												img(src='/img/movie1.jpg',alt='安娜贝尔')
 										li(class='title')
-											a(href='#') 安娜贝尔
+											a(href='#') 功夫熊猫3
 										li(class='rating')
-											span(class='rating-star')
-											span(class='subject-rate') 5.4
-										li(class='ticket-btn')
+											span(class='rating-star allstar allstar40')
+											span(class='subject-rate') 8.0
+										li(class='ticket_btn')
 											span
 												a(href='#') 选座购票
 							- }
