@@ -7,5 +7,6 @@ var Movie = require('../controllers/movie.js');
 router.get('/movieTypeIn',Movie.tomovTypeIn);
 
 /* POST users listing. */
+router.post('/movieTypeIn',Movie.movieTypeIn);
 
 module.exports = router;

@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var bcrypt = require('bctypt-nodejs');
 
 var MovieSchema = new mongoose.Schema({
-	movieName:{
+	moviename:{
 		unique: true,
 		type: String
 	},
@@ -43,5 +43,11 @@ MovieSchema.pre('save',function(next){
 
 	next();
 });
+
+MovieSchema.statics = {
+	findById: function(id, callback) {
+		return this.findOne({_id: id}).exec(callback);
+	}
+};
 
 module.exports = MovieSchema;
