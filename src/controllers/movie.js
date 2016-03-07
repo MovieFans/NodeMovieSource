@@ -1,7 +1,7 @@
 /**
  * Created by judith on 2016/3/6.
  */
-var MovieModel = require('../model/user_model');
+var MovieModel = require('../model/movie_model');
 
 /**
  * 电影录入页
@@ -27,7 +27,7 @@ exports.movieTypeIn = function(req,res){
 			return res.redirect('/');
 		}else{
 			var newMovie = new MovieModel(_movie);
-			MovieModel.save(function(){
+			MovieModel.save(function(err,movie){
 				if(err){
 					console.log(err);
 				}
