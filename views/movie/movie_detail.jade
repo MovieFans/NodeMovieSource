@@ -1,0 +1,49 @@
+extends ../layout
+
+block content
+	include ../includes/head
+	div(id='db-nav-movie',class='nav')
+		div(class='nav-wrap')
+			div(class='nav-primary')
+				div(class='nav-logo')
+					a(href='#') 豆瓣电影
+				div(class='nav-search')
+					form(method='get',action='')
+						fieldset
+							legend 搜索
+							label(for='inp-query',style='display:none') 电影、影人、影院、电视剧
+							div(class='inp')
+								input(id='inp-query',name='search-text',class='placeholder',size='22',maxlength='60',placeholder='电影、影人、影院、电视剧',autocomplete='off')
+							div(class='inp-btn')
+								input(type='submit',value='搜索')
+							input(type="hidden", name="cat", value="1002")
+					a(href='#',target='_blank',class='ban-filmawards')
+						img(src='../img/xinxiang_6th_nav.png',alt='豆瓣电影观影报告')
+		div(class='nav-secondary')
+			div(class='nav-items nav-anon')
+				ul
+					mixin parameters(name,url)
+						li
+							a(href='#{url}') #{name}
+					+parameters('影讯&购票','#')
+					+parameters('选电影','#')
+					+parameters('电视剧','#')
+					+parameters('排行榜','#')
+					+parameters('分类','#')
+					+parameters('影评','#')
+					+parameters('2015年度榜单','#')
+					+parameters('豆瓣观影报告','#')
+	div(id='wrap')
+		div(id='content')
+			h1
+				span	功夫熊猫3 Kung Fu Panda 3
+				span(class='year')	(2016)
+			div(class='grid-16-8 clearfix')
+				div(class='article')
+					div(class='indent clearfix')
+						div(class='subjectwrap clearfix')
+							div(class='subject clearfix')
+								div(id='mainpic')
+									a(class='nbgnbg',title='点击看更多海报',href='#')
+										img(src='../img/panda.jpg',title="点击看更多海报",alt="Kung Fu Panda 3")
+								div(id='info')

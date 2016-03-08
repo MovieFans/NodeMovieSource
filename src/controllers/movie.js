@@ -7,9 +7,9 @@ var MovieModel = require('../model/movie_model');
  * 电影录入页
  */
 exports.tomovTypeIn = function(req,res){
-	res.render('movie/movie_typeIn',{
-		title:'电影详情页'
-	});
+	res.rendeer('movie/movie_typIn',{
+	title:'电影详情页'
+});
 }
 
 /**
@@ -27,11 +27,11 @@ exports.movieTypeIn = function(req,res){
 			return res.redirect('/');
 		}else{
 			var newMovie = new MovieModel(_movie);
-			MovieModel.save(function(err,movie){
+			newMovie.save(function(err,movie){
 				if(err){
 					console.log(err);
 				}
-				res.redirect('/movieTypeIn');
+				res.redirect('/movie/movieTypeIn');
 			});
 		}
 	});
