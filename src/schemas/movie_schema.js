@@ -44,6 +44,12 @@ MovieSchema.pre('save',function(next){
 });
 
 MovieSchema.statics = {
+	fetch: function(cb) {
+		return this
+				.find({})
+				.sort('meta.updateAt')
+				.exec(cb);
+	},
 	findById: function(id, callback) {
 		return this.findOne({_id: id}).exec(callback);
 	}

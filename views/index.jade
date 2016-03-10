@@ -52,20 +52,19 @@ block content
 							a(href='#',class='will-play') 即将上映»
 					div(class='screening-bd')
 						ul(class='ui-slide-content',data-slide-index='1',data-slide-max='5')
-							- for(var  i=0;i<18;i++){
-								li(class='ui-slide-item',data-title='安娜贝尔')
+							each item in movies
+								li(class='ui-slide-item',data-title='功夫熊猫3')
 									ul
 										li(class='poster')
-											a(href='#')
-												img(src='/img/movie1.jpg',alt='安娜贝尔')
+											a(href='/movie/movDetail')
+												img(src='/img/movie1.jpg',alt='功夫熊猫3')
 										li(class='title')
-											a(href='#') 功夫熊猫3
+											a(href='/movie/movDetail') #{item.moviename}
 										li(class='rating')
 											span(class='rating-star allstar allstar40')
 											span(class='subject-rate') 8.0
 										li(class='ticket_btn')
 											span
 												a(href='#') 选座购票
-							- }
 			div(class='aside')
 	include ./includes/footer
