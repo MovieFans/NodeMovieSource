@@ -56,10 +56,10 @@ block content
 								li(class='ui-slide-item',data-title='功夫熊猫3')
 									ul
 										li(class='poster')
-											a(href='/movie/movDetail')
+											a(href='/movie/movDetail/#{item._id}')
 												img(src='/img/movie1.jpg',alt='功夫熊猫3')
 										li(class='title')
-											a(href='/movie/movDetail') #{item.moviename}
+											a(href='/movie/movDetail/#{item._id}') #{item.moviename}
 										li(class='rating')
 											span(class='rating-star allstar allstar40')
 											span(class='subject-rate') 8.0

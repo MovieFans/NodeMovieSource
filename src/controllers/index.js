@@ -8,7 +8,7 @@ exports.toindex = function(req, res) {
 		if(err) {
 			console.log(err);
 		}
-		res.render('/', {
+		res.render('index', {
 			title: '豆瓣电影',
 			movies: movies
 		});

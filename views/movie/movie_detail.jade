@@ -18,7 +18,7 @@ block content
 								input(type='submit',value='搜索')
 							input(type="hidden", name="cat", value="1002")
 					a(href='#',target='_blank',class='ban-filmawards')
-						img(src='../img/xinxiang_6th_nav.png',alt='豆瓣电影观影报告')
+						img(src='/img/xinxiang_6th_nav.png',alt='豆瓣电影观影报告')
 		div(class='nav-secondary')
 			div(class='nav-items nav-anon')
 				ul
@@ -36,7 +36,7 @@ block content
 	div(id='wrap')
 		div(id='content')
 			h1
-				span(id='moviename')	#{title}
+				span(id='moviename')	#{movie.moviename}
 				span(class='year')	(2016)
 			div(class='grid-16-8 clearfix')
 				div(class='article')
@@ -45,38 +45,38 @@ block content
 							div(class='subject clearfix')
 								div(id='mainpic')
 									a(class='nbgnbg',title='点击看更多海报',href='#')
-										img(src='../img/panda1.jpg',title="点击看更多海报",alt="Kung Fu Panda 3")
+										img(src='/img/panda1.jpg',title="点击看更多海报",alt="Kung Fu Panda 3")
 								div(id='info')
-									//span(class='director')
-									//	span(class='p1')	导演
-									//	span(class='attrs')	#{movie.director}
-									//br
-									//span(class='writers')
-									//	span(class='p1')  编剧
-									//	span(class='attrs')  #{movie.writers}
-									//br
-									//span(class='actors')
-									//	span(class='p1')  主演
-									//	span(class='attrs')  #{movie.actors}
-									//br
-									//span(class='type')
-									//	span(class='p1')  类型
-									//	span(class='attrs')  #{movie.type}
-									//br
-									//span(class='countries')
-									//	span(class='p1')  国家
-									//	span(class='attrs')  #{movie.countries}
-									//br
-									//span(class='language')
-									//	span(class='p1')  语言
-									//	span(class='attrs')  #{movie.language}
-									//br
-									//span(class='showDate')
-									//	span(class='p1')  上映日期
-									//	span(class='attrs')  #{movie.meta.showDate}
-									//br
-									//span(class='runtime')
-									//	span(class='p1')  时长
-									//	span(class='attrs')  #{movie.meta.runtime}
-									//br
+									span(class='director')
+										span(class='p1')	导演
+										span(class='attrs')	#{movie.director}
+									br
+									span(class='writers')
+										span(class='p1')  编剧
+										span(class='attrs')  #{movie.writers}
+									br
+									span(class='actors')
+										span(class='p1')  主演
+										span(class='attrs')  #{movie.actors}
+									br
+									span(class='type')
+										span(class='p1')  类型
+										span(class='attrs')  #{movie.type}
+									br
+									span(class='countries')
+										span(class='p1')  国家
+										span(class='attrs')  #{movie.countries}
+									br
+									span(class='language')
+										span(class='p1')  语言
+										span(class='attrs')  #{movie.language}
+									br
+									span(class='showDate')
+										span(class='p1')  上映日期
+										span(class='attrs')  #{moment(movie.meta.showDate).format('YYYY/MM/DD')}
+									br
+									span(class='runtime')
+										span(class='p1')  时长
+										span(class='attrs')  #{movie.meta.runtime}
+									br
 

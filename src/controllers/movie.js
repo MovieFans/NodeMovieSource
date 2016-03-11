@@ -13,18 +13,18 @@ exports.tomovTypeIn = function(req,res){
 }
 
 exports.tomovDetail = function(req,res) {
-	var name = "功夫熊猫3";
-	MovieModel.findOne({moviename: name}, function (err, movie) {
+	var id = req.params.id
+	MovieModel.findById(id, function (err, movie) {
 		if (err) {
 			console.log(err);
 		}
 		if (!movie) {
 			res.render('movie/movie_detail', {
-				title: '电影详情页'
+				//title: '电影详情页'
 			});
 		}
 		res.render('movie/movie_detail', {
-			title: movie.moviename
+			movie: movie
 		});
 	})
 }

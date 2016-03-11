@@ -10,6 +10,8 @@ var Conf = require('./src/conf/config.js');
 mongoose.connect(Conf.db_str);
 
 var app = express();
+app.locals.moment =require('moment');
+
 var routes = require('./src/routes/index_route');
 var userRoutes = require('./src/routes/user_route');
 var movieRoutes = require('./src/routes/movie_route');
