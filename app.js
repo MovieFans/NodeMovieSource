@@ -6,6 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var Conf = require('./src/conf/config.js');
+var fs = require('fs');
+var formidable = require('formidable');
 
 mongoose.connect(Conf.db_str);
 

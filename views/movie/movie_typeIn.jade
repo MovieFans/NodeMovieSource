@@ -6,7 +6,7 @@ block content
 			img(src='/img/lg_account.png',alt='豆瓣')
 		div(class='wrapper')
 			h1 #{title}
-			form(method='post',action='/movie/movieTypeIn')
+			form(method='post',action='/movie/movieTypeIn',enctype='multipart/form-data')
 				div(class='item extra-tips')
 					ladel(class='label') 电影名称
 					input(id='moviename',name='moviename',class='basic-input',maxlength='60',tabindex='1')
@@ -34,6 +34,9 @@ block content
 				div(class='item extra-tips')
 					ladel(class='label') 片长
 					input(id='runtime',name='runtime',class='basic-input',maxlength='60',tabindex='9')
+				div(class='item extra-tips')
+					ladel(class='label') 图片
+					input(id='moviepic',name="moviepic" multiple="multiple",class='basic-input',type='file',maxlength='60',tabindex='10')
 				div(class='item-submit')
 					input(type='submit',name='m-typein',value='录入',id='button',class='btn-submit enabled',title='阅读并同意豆瓣的《使用协议》方可注册。')
 	include ../includes/footer

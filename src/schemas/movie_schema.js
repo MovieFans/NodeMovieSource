@@ -28,7 +28,8 @@ var MovieSchema = new mongoose.Schema({
 			default: Date.now()
 		}
 	},
-	runtime:String
+	runtime:String,
+	moviepic:String
 });
 
 MovieSchema.pre('save',function(next){
