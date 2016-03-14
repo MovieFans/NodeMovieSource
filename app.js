@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var Conf = require('./src/conf/config.js');
 var fs = require('fs');
-var formidable = require('formidable');
+//var multiparty = require('multiparty');
 
 mongoose.connect(Conf.db_str);
 

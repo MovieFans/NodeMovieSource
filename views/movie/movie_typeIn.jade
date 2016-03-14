@@ -1,44 +1,44 @@
-extends ../layout
+extends  ../layout
 
-block content
+block  content
 	div(class='site-nav')
 		a(href='#',class='lk-site')
 			img(src='/img/lg_account.png',alt='豆瓣')
 		div(class='wrapper')
-			h1 #{title}
+			h1  #{title}
 			form(method='post',action='/movie/movieTypeIn',enctype='multipart/form-data')
-				div(class='item extra-tips')
-					ladel(class='label') 电影名称
+				div(class='item	extra-tips')
+					ladel(class='label')  电影名称
 					input(id='moviename',name='moviename',class='basic-input',maxlength='60',tabindex='1')
-				div(class='item extra-tips')
-					ladel(class='label') 导演
+				div(class='item	extra-tips')
+					ladel(class='label')  导演
 					input(id='director',name='director',class='basic-input',maxlength='60',tabindex='2')
-				div(class='item extra-tips')
-					ladel(class='label') 编剧
+				div(class='item	extra-tips')
+					ladel(class='label')  编剧
 					input(id='writers',name='writers',class='basic-input',maxlength='60',tabindex='3')
-				div(class='item extra-tips')
-					ladel(class='label') 主演
+				div(class='item	extra-tips')
+					ladel(class='label')  主演
 					input(id='actors',name='actors',class='basic-input',maxlength='60',tabindex='4')
-				div(class='item extra-tips')
-					ladel(class='label')	类型
+				div(class='item	extra-tips')
+					ladel(class='label')  类型
 					input(id='type',name='type',class='basic-input',maxlength='60',tabindex='5')
-				div(class='item extra-tips')
-					ladel(class='label') 制片国家
+				div(class='item	extra-tips')
+					ladel(class='label')  制片国家
 					input(id='countries',name='countries',class='basic-input',maxlength='60',tabindex='6')
-				div(class='item extra-tips')
-					ladel(class='label') 语言
+				div(class='item	extra-tips')
+					ladel(class='label')  语言
 					input(id='language',name='language',class='basic-input',maxlength='60',tabindex='7')
-				div(class='item extra-tips')
-					ladel(class='label') 上映日期
+				div(class='item	extra-tips')
+					ladel(class='label')  上映日期
 					input(id='showDate',name='showDate',class='basic-input',maxlength='60',tabindex='8')
-				div(class='item extra-tips')
-					ladel(class='label') 片长
+				div(class='item	extra-tips')
+					ladel(class='label')  片长
 					input(id='runtime',name='runtime',class='basic-input',maxlength='60',tabindex='9')
-				div(class='item extra-tips')
-					ladel(class='label') 图片
-					input(id='moviepic',name="moviepic" multiple="multiple",class='basic-input',type='file',maxlength='60',tabindex='10')
+				div(class='item	extra-tips')
+					ladel(class='label')  图片
+					input(id='moviepic',name="moviepic",  multiple='mutiple',class='basic-input',type='file',maxlength='60',tabindex='10')
 				div(class='item-submit')
-					input(type='submit',name='m-typein',value='录入',id='button',class='btn-submit enabled',title='阅读并同意豆瓣的《使用协议》方可注册。')
-	include ../includes/footer
+					input(type='submit',name='m-typein',value='录入',id='button',class='btn-submit	enabled',title='阅读并同意豆瓣的《使用协议》方可注册。')
+	include  ../includes/footer
 
 
