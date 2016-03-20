@@ -9,7 +9,7 @@ var Conf = require('./src/conf/config.js');
 var fs = require('fs');
 //var multiparty = require('multiparty');
 
-mongoose.connect(Conf.db_str);
+//mongoose.connect(Conf.db_str);
 
 var app = express();
 app.locals.moment =require('moment');
