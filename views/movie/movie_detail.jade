@@ -48,35 +48,35 @@ block content
 										img(src='#{movie.moviepic}',title="点击看更多海报",alt="Kung Fu Panda 3")
 								div(id='info')
 									span(class='director')
-										span(class='p1')	导演：
+										span(class='p1')	导演:
 										span(class='attrs')	#{movie.director}
 									br
 									span(class='writers')
-										span(class='p1')  编剧：
+										span(class='p1')  编剧:
 										span(class='attrs')  #{movie.writers}
 									br
 									span(class='actors')
-										span(class='p1')  主演：
+										span(class='p1')  主演:
 										span(class='attrs')  #{movie.actors}
 									br
 									span(class='type')
-										span(class='p1')  类型：
+										span(class='p1')  类型:
 										span(class='attrs')  #{movie.type}
 									br
 									span(class='countries')
-										span(class='p1')  国家：
+										span(class='p1')  国家:
 										span(class='attrs')  #{movie.countries}
 									br
 									span(class='language')
-										span(class='p1')  语言：
+										span(class='p1')  语言:
 										span(class='attrs')  #{movie.language}
 									br
 									span(class='showDate')
-										span(class='p1')  上映日期：
+										span(class='p1')  上映日期:
 										span(class='attrs')  #{moment(movie.meta.showDate).format('YYYY/MM/DD')}
 									br
 									span(class='runtime')
-										span(class='p1')  时长：
+										span(class='p1')  时长:
 										span(class='attrs')  #{movie.meta.runtime}
 									br
 							div(id='interest_sect1')
@@ -92,31 +92,30 @@ block content
 													span(property='v:votes')	21892
 													span	人评价
 									span(class="stars5 starstop" title="力荐")	5星
-									div(class="power")
+									div(class="power",style='width:64px')
 									span(class="rating_per")	70.6%
 									br
 									span(class="stars5 starstop" title="力荐")  4星
-									div(class="power")
+									div(class="power",style='width:23px')
 									span(class="rating_per")  25.5%
 									br
 									span(class="stars5 starstop" title="力荐")  3星
-									div(class="power")
+									div(class="power",style='width:3px')
 									span(class="rating_per")  3.6%
 									br
 									span(class="stars5 starstop" title="力荐")  2星
-									div(class="power")
+									div(class="power",style='width:1px')
 									span(class="rating_per")  0.2%
 									br
 									span(class="stars5 starstop" title="力荐")  1星
-									div(class="power")
+									div(class="power",style='width:0')
 									span(class="rating_per")  0.1%
 									br
-									div(class="rating_betterthan")
-										span 好于
-										a(class='donghua',href='#')	99% 动画片
-										br
-									div(class="rating_betterthan")
-										span 好于
-										a(class='donghua',href='#')  99% 喜剧片
-										br
+								div(class="rating_betterthan")
+									span(class='marginbot') 好于
+									a(class='donghua marginbot',href='#')	99% 动画片
+									br
+									span 好于
+									a(class='donghua',href='#')  99% 喜剧片
+									br
 
