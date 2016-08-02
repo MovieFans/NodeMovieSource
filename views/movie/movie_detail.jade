@@ -2,6 +2,71 @@ extends ../layout
 
 block content
 	include ../includes/head
+	script(src='/js/movie_detail.js')
+	//弹出框透明层
+	div(id="overlay")
+	//弹出框具体内容
+	div(id="dialog")
+		div(class="indentpop1 clearfix")
+			form(class="j a_interest_form movie-sns")
+				div(class="interest-form-hd")
+					span(class="gact rr")
+						a(href="javascript:;" class="fa fa-times")
+					h2 添加收藏：我看过这部电影
+				div(class="topbar-wrapper")
+					span(class="interest-rating")
+						div(class="j a_stars")
+							span(class="rate_stars") 给个评价吧?(可选):
+								span(id='rating_alert')
+									span(id='star_alert')
+										a(href='javascript:;' class='j a_collect_btn' name='pbtn-1' ng-repeat="evalutaion in Evalutaions" )
+											img(src='/img/star_hollow_hover.png' width='16' height='16' ng-mouseover='over($index)' ng-mouseleave = 'out()')
+								span(class = "Evalutaion") {{Evalutaion}}
+					div(class="tags-switch")
+						a(id="showtags" rel="高级(标签和短评) ▼" href="javascript:void(0)") 缩起 ▲
+				ul(id="advtags" class="interest_form")
+					li 标签(多个标签用空格分隔):
+					li
+						input(name='tags' type='text' class='inp-tags')
+					li(id='mytags' class='clearfix')
+						dl
+							dt 我的标签:
+						dd
+							span(class='tagbtn gract') 搞笑
+					li(id="populartags" class="clearfix")
+						dl
+							dt 常用标签:
+						dd
+							span(class='tagbtn gract') 香港&nbsp;
+							span(class='tagbtn gract') 惊险&nbsp;
+							span(class='tagbtn gract') 心理&nbsp;
+							span(class='tagbtn gract') 剧情&nbsp;
+							span(class='tagbtn gract') 动作&nbsp;
+							span(class='tagbtn gract') 犯罪&nbsp;
+							span(class='tagbtn gract') 2016&nbsp;
+							span(class='tagbtn gract') 悬疑&nbsp;
+							span(class='tagbtn gract') 电影&nbsp;
+							span(class='tagbtn gract') 惊险&nbsp;
+					li(class="comment-label")
+						span(id="left_n" class="num") 140
+						span 简短评论:
+					li
+						textarea(name="comment" class="comment" id="comment" maxlength="350")
+					li(class="private")
+						input(id="inp-private" name="private" type="checkbox")
+						label(class="pl" for="inp-private") 仅自己可见
+				div(class="interest-form-ft" id="submits")
+					div(class="sync-setting pl")
+						label 分享到
+						label(class="share-label share-shuo" for="share-shuo")
+							input(id="share-shuo" name="share-shuo" value="douban" type="checkbox" checked="checked")
+							span 豆瓣广播
+						a(id="lnk-sync-setting" class="no-visited no-hover" href="https://movie.douban.com/settings/sync" target="_blank")
+							img(src="https://img3.doubanio.com/f/movie/9389c4e5cab0cd1089a189d607d296c31ddb1bc0/pics/movie/share_g.png" alt="发送信息到新浪、腾讯等微博")
+							span 发送信息到新浪、腾讯等微博
+					span(class="bn-flat")
+						input(type="submit" value="保存" name="save")
+
 	div(id='db-nav-movie',class='nav')
 		div(class='nav-wrap')
 			div(class='nav-primary')
@@ -33,7 +98,7 @@ block content
 					+parameters('影评','#')
 					+parameters('2015年度榜单','#')
 					+parameters('豆瓣观影报告','#')
-	div(id='wrap')
+	div(id='wrap' ng-app="myApp" ng-controller="evalutaionCtrl")
 		div(id='content')
 			h1
 				span(id='moviename')	#{movie.moviename}
@@ -129,13 +194,6 @@ block content
 								span 评价：
 								span(id='rating')
 									span(id='star')
-										a(href='javascript:;' class='j a_collect_btn' name='pbtn-1')
-											img(src='/img/star_hollow_hover.png' id='star1' width='16' height='16')
-										a(href='javascript:;' class='j a_collect_btn' name='pbtn-1')
-											img(src='/img/star_hollow_hover.png' id='star2' width='16' height='16')
-										a(href='javascript:;' class='j a_collect_btn' name='pbtn-1')
-											img(src='/img/star_hollow_hover.png' id='star3' width='16' height='16')
-										a(href='javascript:;' class='j a_collect_btn' name='pbtn-1')
-											img(src='/img/star_hollow_hover.png' id='star4' width='16' height='16')
-										a(href='javascript:;' class='j a_collect_btn' name='pbtn-1')
-											img(src='/img/star_hollow_hover.png' id='star5' width='16' height='16')
+										a(href='javascript:;' class='j a_collect_btn' name='pbtn-1' ng-repeat="evalutaion in Evalutaions" )
+											img(src='/img/star_hollow_hover.png' id='star1' width='16' height='16' ng-mouseover='over($index)' ng-mouseleave = 'out()')
+								span(class = "Evalutaion") {{Evalutaion}}
