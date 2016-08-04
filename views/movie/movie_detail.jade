@@ -3,197 +3,198 @@ extends ../layout
 block content
 	include ../includes/head
 	script(src='/js/movie_detail.js')
-	//弹出框透明层
-	div(id="overlay")
-	//弹出框具体内容
-	div(id="dialog")
-		div(class="indentpop1 clearfix")
-			form(class="j a_interest_form movie-sns")
-				div(class="interest-form-hd")
-					span(class="gact rr")
-						a(href="javascript:;" class="fa fa-times")
-					h2 添加收藏：我看过这部电影
-				div(class="topbar-wrapper")
-					span(class="interest-rating")
-						div(class="j a_stars")
-							span(class="rate_stars") 给个评价吧?(可选):
-								span(id='rating_alert')
-									span(id='star_alert')
-										a(href='javascript:;' class='j a_collect_btn' name='pbtn-1' ng-repeat="evalutaion in Evalutaions" )
-											img(src='/img/star_hollow_hover.png' width='16' height='16' ng-mouseover='over($index)' ng-mouseleave = 'out()')
-								span(class = "Evalutaion") {{Evalutaion}}
-					div(class="tags-switch")
-						a(id="showtags" rel="高级(标签和短评) ▼" href="javascript:void(0)") 缩起 ▲
-				ul(id="advtags" class="interest_form")
-					li 标签(多个标签用空格分隔):
-					li
-						input(name='tags' type='text' class='inp-tags')
-					li(id='mytags' class='clearfix')
-						dl
-							dt 我的标签:
-						dd
-							span(class='tagbtn gract') 搞笑
-					li(id="populartags" class="clearfix")
-						dl
-							dt 常用标签:
-						dd
-							span(class='tagbtn gract') 香港&nbsp;
-							span(class='tagbtn gract') 惊险&nbsp;
-							span(class='tagbtn gract') 心理&nbsp;
-							span(class='tagbtn gract') 剧情&nbsp;
-							span(class='tagbtn gract') 动作&nbsp;
-							span(class='tagbtn gract') 犯罪&nbsp;
-							span(class='tagbtn gract') 2016&nbsp;
-							span(class='tagbtn gract') 悬疑&nbsp;
-							span(class='tagbtn gract') 电影&nbsp;
-							span(class='tagbtn gract') 惊险&nbsp;
-					li(class="comment-label")
-						span(id="left_n" class="num") 140
-						span 简短评论:
-					li
-						textarea(name="comment" class="comment" id="comment" maxlength="350")
-					li(class="private")
-						input(id="inp-private" name="private" type="checkbox")
-						label(class="pl" for="inp-private") 仅自己可见
-				div(class="interest-form-ft" id="submits")
-					div(class="sync-setting pl")
-						label 分享到
-						label(class="share-label share-shuo" for="share-shuo")
-							input(id="share-shuo" name="share-shuo" value="douban" type="checkbox" checked="checked")
-							span 豆瓣广播
-						a(id="lnk-sync-setting" class="no-visited no-hover" href="https://movie.douban.com/settings/sync" target="_blank")
-							img(src="https://img3.doubanio.com/f/movie/9389c4e5cab0cd1089a189d607d296c31ddb1bc0/pics/movie/share_g.png" alt="发送信息到新浪、腾讯等微博")
-							span 发送信息到新浪、腾讯等微博
-					span(class="bn-flat")
-						input(type="submit" value="保存" name="save")
-
-	div(id='db-nav-movie',class='nav')
-		div(class='nav-wrap')
-			div(class='nav-primary')
-				div(class='nav-logo')
-					a(href='#') 豆瓣电影
-				div(class='nav-search')
-					form(method='get',action='/movie/movDetail')
-						fieldset
-							legend 搜索
-							label(for='inp-query',style='display:none') 电影、影人、影院、电视剧
-							div(class='inp')
-								input(id='inp-query',name='search-text',class='placeholder',size='22',maxlength='60',placeholder='电影、影人、影院、电视剧',autocomplete='off')
-							div(class='inp-btn')
-								input(type='submit',value='搜索')
-							input(type="hidden", name="cat", value="1002")
-					a(href='#',target='_blank',class='ban-filmawards')
-						img(src='/img/xinxiang_6th_nav.png',alt='豆瓣电影观影报告')
-		div(class='nav-secondary')
-			div(class='nav-items nav-anon')
-				ul
-					mixin parameters(name,url)
+	div(ng-app="myApp" ng-controller="evalutaionCtrl")
+		//弹出框透明层
+		div(id="overlay")
+		//弹出框具体内容
+		div(id="dialog" ng-controller="dialogCtrl" style="display:block;")
+			div(class="indentpop1 clearfix")
+				form(class="j a_interest_form movie-sns")
+					div(class="interest-form-hd")
+						span(class="gact rr")
+							a(href="javascript:;" class="fa fa-times")
+						h2 添加收藏：我看过这部电影
+					div(class="topbar-wrapper")
+						span(class="interest-rating")
+							div(class="j a_stars")
+								span(class="rate_stars") 给个评价吧?(可选):
+									span(id='rating_alert')
+										span(id='star_alert')
+											a(href='javascript:;' class='j a_collect_btn' name='pbtn-1' ng-repeat="evalutaion in dialgEvalutaions" )
+												img(src='/img/star_hollow_hover.png' width='16' height='16' ng-mouseover='dialgOver($index)' ng-mouseleave = 'dialgOut(value)')
+									span(class = "Evalutaion") {{dialgEvalutaion}}
+						div(class="tags-switch")
+							a(id="showtags" rel="高级(标签和短评) ▼" href="javascript:void(0)") 缩起 ▲
+					ul(id="advtags" class="interest_form")
+						li 标签(多个标签用空格分隔):
 						li
-							a(href='#{url}') #{name}
-					+parameters('影讯&购票','#')
-					+parameters('选电影','#')
-					+parameters('电视剧','#')
-					+parameters('排行榜','#')
-					+parameters('分类','#')
-					+parameters('影评','#')
-					+parameters('2015年度榜单','#')
-					+parameters('豆瓣观影报告','#')
-	div(id='wrap' ng-app="myApp" ng-controller="evalutaionCtrl")
-		div(id='content')
-			h1
-				span(id='moviename')	#{movie.moviename}
-				span(class='year')	(2016)
-			div(class='grid-16-8 clearfix')
-				div(class='article')
-					div(class='indent clearfix')
-						div(class='subjectwrap clearfix')
-							div(class='subject clearfix')
-								div(id='mainpic')
-									a(class='nbgnbg',title='点击看更多海报',href='#')
-										img(src='#{movie.moviepic}',title="点击看更多海报",alt="Kung Fu Panda 3")
-								div(id='info')
-									span(class='director')
-										span(class='p1')	导演:
-										span(class='attrs')	#{movie.director}
-									br
-									span(class='writers')
-										span(class='p1')  编剧:
-										span(class='attrs')  #{movie.writers}
-									br
-									span(class='actors')
-										span(class='p1')  主演:
-										span(class='attrs')  #{movie.actors}
-									br
-									span(class='type')
-										span(class='p1')  类型:
-										span(class='attrs')  #{movie.type}
-									br
-									span(class='countries')
-										span(class='p1')  国家:
-										span(class='attrs')  #{movie.countries}
-									br
-									span(class='language')
-										span(class='p1')  语言:
-										span(class='attrs')  #{movie.language}
-									br
-									span(class='showDate')
-										span(class='p1')  上映日期:
-										span(class='attrs')  #{moment(movie.meta.showDate).format('YYYY/MM/DD')}
-									br
-									span(class='runtime')
-										span(class='p1')  时长:
-										span(class='attrs')  #{movie.meta.runtime}
-									br
-							div(id='interest_sect1')
-								div(class='rating_wrap clearbox',rel='v:rating')
-									div(class='rating_logo')	豆瓣评分
-									div(class='rating_self clearfix',typeof='v:Rating')
-										strong(class='ll rating_num',property='v:average')	9.3
-										span(property='v:best',content='10.0')
-										div(class='rating-right')
-											div(class='ll bigstar50')
-											div(class='rating_sum')
-												a(href='#',class='rating_people')
-													span(property='v:votes')	21892
-													span	人评价
-									span(class="stars5 starstop" title="力荐")	5星
-									div(class="power",style='width:64px')
-									span(class="rating_per")	70.6%
-									br
-									span(class="stars5 starstop" title="力荐")  4星
-									div(class="power",style='width:23px')
-									span(class="rating_per")  25.5%
-									br
-									span(class="stars5 starstop" title="力荐")  3星
-									div(class="power",style='width:3px')
-									span(class="rating_per")  3.6%
-									br
-									span(class="stars5 starstop" title="力荐")  2星
-									div(class="power",style='width:1px')
-									span(class="rating_per")  0.2%
-									br
-									span(class="stars5 starstop" title="力荐")  1星
-									div(class="power",style='width:0')
-									span(class="rating_per")  0.1%
-									br
-								div(class="rating_betterthan")
-									span(class='marginbot') 好于
-									a(class='donghua marginbot',href='#')	99% 动画片
-									br
-									span 好于
-									a(class='donghua',href='#')  99% 喜剧片
-									br
+							input(name='tags' type='text' class='inp-tags')
+						li(id='mytags' class='clearfix')
+							dl
+								dt 我的标签:
+							dd
+								span(class='tagbtn gract') 搞笑
+						li(id="populartags" class="clearfix")
+							dl
+								dt 常用标签:
+							dd
+								span(class='tagbtn gract') 香港
+								span(class='tagbtn gract') 惊险
+								span(class='tagbtn gract') 心理
+								span(class='tagbtn gract') 剧情
+								span(class='tagbtn gract') 动作
+								span(class='tagbtn gract') 犯罪
+								span(class='tagbtn gract') 2016
+								span(class='tagbtn gract') 悬疑
+								span(class='tagbtn gract') 电影
+								span(class='tagbtn gract') 惊险
+						li(class="comment-label")
+							span(id="left_n" class="num") 140
+							span 简短评论:
+						li
+							textarea(name="comment" class="comment" id="comment" maxlength="350")
+						li(class="private")
+							input(id="inp-private" name="private" type="checkbox")
+							label(class="pl" for="inp-private") 仅自己可见
+					div(class="interest-form-ft" id="submits")
+						div(class="sync-setting pl")
+							label 分享到
+							label(class="share-label share-shuo" for="share-shuo")
+								input(id="share-shuo" name="share-shuo" value="douban" type="checkbox" checked="checked")
+								span 豆瓣广播
+							a(id="lnk-sync-setting" class="no-visited no-hover" href="https://movie.douban.com/settings/sync" target="_blank")
+								img(src="https://img3.doubanio.com/f/movie/9389c4e5cab0cd1089a189d607d296c31ddb1bc0/pics/movie/share_g.png" alt="发送信息到新浪、腾讯等微博")
+								span 发送信息到新浪、腾讯等微博
+						span(class="bn-flat")
+							input(type="submit" value="保存" name="save")
+
+		div(id='db-nav-movie',class='nav')
+			div(class='nav-wrap')
+				div(class='nav-primary')
+					div(class='nav-logo')
+						a(href='#') 豆瓣电影
+					div(class='nav-search')
+						form(method='get',action='/movie/movDetail')
+							fieldset
+								legend 搜索
+								label(for='inp-query',style='display:none') 电影、影人、影院、电视剧
+								div(class='inp')
+									input(id='inp-query',name='search-text',class='placeholder',size='22',maxlength='60',placeholder='电影、影人、影院、电视剧',autocomplete='off')
+								div(class='inp-btn')
+									input(type='submit',value='搜索')
+								input(type="hidden", name="cat", value="1002")
+						a(href='#',target='_blank',class='ban-filmawards')
+							img(src='/img/xinxiang_6th_nav.png',alt='豆瓣电影观影报告')
+			div(class='nav-secondary')
+				div(class='nav-items nav-anon')
+					ul
+						mixin parameters(name,url)
+							li
+								a(href='#{url}') #{name}
+						+parameters('影讯&购票','#')
+						+parameters('选电影','#')
+						+parameters('电视剧','#')
+						+parameters('排行榜','#')
+						+parameters('分类','#')
+						+parameters('影评','#')
+						+parameters('2015年度榜单','#')
+						+parameters('豆瓣观影报告','#')
+		div(id='wrap')
+			div(id='content')
+				h1
+					span(id='moviename')	#{movie.moviename}
+					span(class='year')	(2016)
+				div(class='grid-16-8 clearfix')
+					div(class='article')
+						div(class='indent clearfix')
+							div(class='subjectwrap clearfix')
+								div(class='subject clearfix')
+									div(id='mainpic')
+										a(class='nbgnbg',title='点击看更多海报',href='#')
+											img(src='#{movie.moviepic}',title="点击看更多海报",alt="Kung Fu Panda 3")
+									div(id='info')
+										span(class='director')
+											span(class='p1')	导演:
+											span(class='attrs')	#{movie.director}
+										br
+										span(class='writers')
+											span(class='p1')  编剧:
+											span(class='attrs')  #{movie.writers}
+										br
+										span(class='actors')
+											span(class='p1')  主演:
+											span(class='attrs')  #{movie.actors}
+										br
+										span(class='type')
+											span(class='p1')  类型:
+											span(class='attrs')  #{movie.type}
+										br
+										span(class='countries')
+											span(class='p1')  国家:
+											span(class='attrs')  #{movie.countries}
+										br
+										span(class='language')
+											span(class='p1')  语言:
+											span(class='attrs')  #{movie.language}
+										br
+										span(class='showDate')
+											span(class='p1')  上映日期:
+											span(class='attrs')  #{moment(movie.meta.showDate).format('YYYY/MM/DD')}
+										br
+										span(class='runtime')
+											span(class='p1')  时长:
+											span(class='attrs')  #{movie.meta.runtime}
+										br
+								div(id='interest_sect1')
+									div(class='rating_wrap clearbox',rel='v:rating')
+										div(class='rating_logo')	豆瓣评分
+										div(class='rating_self clearfix',typeof='v:Rating')
+											strong(class='ll rating_num',property='v:average')	9.3
+											span(property='v:best',content='10.0')
+											div(class='rating-right')
+												div(class='ll bigstar50')
+												div(class='rating_sum')
+													a(href='#',class='rating_people')
+														span(property='v:votes')	21892
+														span	人评价
+										span(class="stars5 starstop" title="力荐")	5星
+										div(class="power",style='width:64px')
+										span(class="rating_per")	70.6%
+										br
+										span(class="stars5 starstop" title="力荐")  4星
+										div(class="power",style='width:23px')
+										span(class="rating_per")  25.5%
+										br
+										span(class="stars5 starstop" title="力荐")  3星
+										div(class="power",style='width:3px')
+										span(class="rating_per")  3.6%
+										br
+										span(class="stars5 starstop" title="力荐")  2星
+										div(class="power",style='width:1px')
+										span(class="rating_per")  0.2%
+										br
+										span(class="stars5 starstop" title="力荐")  1星
+										div(class="power",style='width:0')
+										span(class="rating_per")  0.1%
+										br
+									div(class="rating_betterthan")
+										span(class='marginbot') 好于
+										a(class='donghua marginbot',href='#')	99% 动画片
+										br
+										span 好于
+										a(class='donghua',href='#')  99% 喜剧片
+										br
 
 
-						div(id='interest_sect_level',class='clearfix')
-							a(href='#',class='collect_btn colbutt ll')
-								span(class='want')	想看
-							a(href='#',class='collect_btn colbutt ll')
-								span(class='saw')  看过
-							div(class='stars')
-								span 评价：
-								span(id='rating')
-									span(id='star')
-										a(href='javascript:;' class='j a_collect_btn' name='pbtn-1' ng-repeat="evalutaion in Evalutaions" )
-											img(src='/img/star_hollow_hover.png' id='star1' width='16' height='16' ng-mouseover='over($index)' ng-mouseleave = 'out()')
-								span(class = "Evalutaion") {{Evalutaion}}
+							div(id='interest_sect_level',class='clearfix')
+								a(href='#',class='collect_btn colbutt ll')
+									span(class='want')	想看
+								a(href='#',class='collect_btn colbutt ll')
+									span(class='saw')  看过
+								div(class='stars')
+									span 评价：
+									span(id='rating')
+										span(id='star')
+											a(href='javascript:;' class='j a_collect_btn' name='pbtn-1' ng-repeat="evalutaion in Evalutaions" )
+												img(src='/img/star_hollow_hover.png' id='star1' width='16' height='16' ng-mouseover='over($index)' ng-mouseleave = 'out()' ng-click = 'choose($index)')
+									span(class = "Evalutaion") {{Evalutaion}}

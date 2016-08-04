@@ -17,7 +17,34 @@ app.controller('evalutaionCtrl', function($scope) {
 		$("#star a img").attr("src","/img/star_hollow_hover.png");
 	}
 
+	//监听：若收到change，把值广播出去
+	$scope.$on("change",function (event, msg) {
+		$scope.$broadcast("changeFromBody", msg);
+	});
 	$scope.choose = function(index){
-		alert(index);
+		$scope.$broadcast('change',index);
 	}
+});
+app.controller('dialogCtrl', function($scope) {
+	$scope.dialgEvalutaions = ["很差", "较差", "还行", "推荐", "力荐"];
+	$scope.dialgEvalutaion = "";
+	$scope.dialgAlertWindow = false;
+	$scope.dialgIfWant = false;
+
+	//监听父controller的广播，得到changeFromBody广播时取$scope.value
+	$scope.$on("changeFromBody",function (event, msg) {
+		$scope.value = msg;
+		console.log($scope.value);
+	});
+
+	$scope.dialgOver = function( index ){
+		$scope.dialgEvalutaion = $scope.dialgEvalutaions[index];
+		$("#star_alert").find("a:lt("+(index+1)+") img").attr("src","/img/star_onmouseover.png");
+	}
+
+	$scope.dialgOut = function(index){
+		$scope.dialgEvalutaion = $scope.dialgEvalutaions[index];;
+		$("#star_alert").find("a:lt("+(index+1)+") img").attr("src","/img/star_onmouseover.png");
+	}
+
 });
