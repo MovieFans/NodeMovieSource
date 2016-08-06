@@ -20,31 +20,100 @@ app.controller('evalutaionCtrl', function($scope) {
 	//监听：若收到change，把值广播出去
 	$scope.$on("change",function (event, msg) {
 		$scope.$broadcast("changeFromBody", msg);
+		$scope.$broadcast("clickFromBody", msg);
 	});
 	$scope.choose = function(index){
 		$scope.$broadcast('change',index);
+		$scope.alertWindow = true;
+	}
+	$scope.close = function(){
+		$scope.alertWindow = false;
 	}
 });
+
 app.controller('dialogCtrl', function($scope) {
 	$scope.dialgEvalutaions = ["很差", "较差", "还行", "推荐", "力荐"];
 	$scope.dialgEvalutaion = "";
 	$scope.dialgAlertWindow = false;
-	$scope.dialgIfWant = false;
+	$scope.dialgStretch = true;
+	$scope.mytagbtnitems = [{"name":"搞笑","isgract":true}];
+	$scope.tagbtnitems = [
+		{"name":"香港","isgract":true},
+		{"name":"惊险","isgract":true},
+		{"name":"心理","isgract":true},
+		{"name":"剧情","isgract":true},
+		{"name":"动作","isgract":true},
+		{"name":"犯罪","isgract":true},
+		{"name":"2016","isgract":true},
+		{"name":"悬疑","isgract":true},
+		{"name":"电影","isgract":true},
+		{"name":"爱情","isgract":true}];
+	$scope.tagInputValue = "";
+	$scope.isgreyinput = false;
 
 	//监听父controller的广播，得到changeFromBody广播时取$scope.value
 	$scope.$on("changeFromBody",function (event, msg) {
 		$scope.value = msg;
-		console.log($scope.value);
+		//console.log($scope.value);
+	});
+	$scope.$on("clickFromBody",function (event, msg) {
+		$scope.dialgEvalutaion = $scope.dialgEvalutaions[msg];
+		$("#star_alert").find("a:lt(5) img").attr("src","/img/star_hollow_hover.png");
+		$("#star_alert").find("a:lt("+(msg+1)+") img").attr("src","/img/star_onmouseover.png");
 	});
 
 	$scope.dialgOver = function( index ){
 		$scope.dialgEvalutaion = $scope.dialgEvalutaions[index];
+		$("#star_alert").find("a:lt(5) img").attr("src","/img/star_hollow_hover.png");
 		$("#star_alert").find("a:lt("+(index+1)+") img").attr("src","/img/star_onmouseover.png");
 	}
 
-	$scope.dialgOut = function(index){
-		$scope.dialgEvalutaion = $scope.dialgEvalutaions[index];;
-		$("#star_alert").find("a:lt("+(index+1)+") img").attr("src","/img/star_onmouseover.png");
+	$scope.dialgOut = function(){
+		$scope.dialgEvalutaion = $scope.dialgEvalutaions[$scope.value];
+		$("#star_alert").find("a:lt(5) img").attr("src","/img/star_hollow_hover.png");
+		$("#star_alert").find("a:lt("+($scope.value+1)+") img").attr("src","/img/star_onmouseover.png");
+	}
+
+	$scope.ifStretch = function(){
+		$scope.dialgStretch = !$scope.dialgStretch;
+		if($scope.dialgStretch){
+			$("#overlay").height(386);
+		}else{
+			$("#overlay").height(158);
+		}
+	}
+
+	$scope.addtag = function(tagtype,index){
+		if(tagtype == "populartag"){
+			if($scope.tagbtnitems[index].isgract){
+				$scope.tagInputValue += $scope.tagbtnitems[index].name +" ";
+				$('.inp-tags').val("").focus().val($scope.tagInputValue);
+			}else{
+				$scope.tagInputValue = $scope.tagInputValue.replace($scope.tagbtnitems[index].name +" ","");
+				$('.inp-tags').val("").focus().val($scope.tagInputValue);
+			}
+				$scope.tagbtnitems[index].isgract = !$scope.tagbtnitems[index].isgract;
+		}else if(tagtype == "mytag"){
+			if($scope.mytagbtnitems[index].isgract){
+				$scope.tagInputValue += $scope.mytagbtnitems[index].name +" ";
+				$('.inp-tags').val("").focus().val($scope.tagInputValue);
+			}else{
+				$scope.tagInputValue = $scope.tagInputValue.replace($scope.mytagbtnitems[index].name +" ","");
+				$('.inp-tags').val("").focus().val($scope.tagInputValue);
+			}
+			$scope.mytagbtnitems[index].isgract = !$scope.mytagbtnitems[index].isgract;
+		}
+	}
+
+	$scope.setPrivate = function(){
+		if(!$scope.isgreyinput){
+			$("#share-shuo").click();
+			$("#share-shuo").attr("disabled",!$scope.isgreyinput);
+		}else{
+			$("#share-shuo").attr("disabled",!$scope.isgreyinput);
+			$("#share-shuo").click();
+		}
+		$scope.isgreyinput = !$scope.isgreyinput;
 	}
 
 });

@@ -5,13 +5,13 @@ block content
 	script(src='/js/movie_detail.js')
 	div(ng-app="myApp" ng-controller="evalutaionCtrl")
 		//弹出框透明层
-		div(id="overlay")
+		div(id="overlay" ng-show = 'alertWindow')
 		//弹出框具体内容
-		div(id="dialog" ng-controller="dialogCtrl" style="display:block;")
+		div(id="dialog" ng-controller="dialogCtrl" ng-show = 'alertWindow')
 			div(class="indentpop1 clearfix")
 				form(class="j a_interest_form movie-sns")
 					div(class="interest-form-hd")
-						span(class="gact rr")
+						span(class="gact rr" ng-click = "close()")
 							a(href="javascript:;" class="fa fa-times")
 						h2 添加收藏：我看过这部电影
 					div(class="topbar-wrapper")
@@ -24,8 +24,8 @@ block content
 												img(src='/img/star_hollow_hover.png' width='16' height='16' ng-mouseover='dialgOver($index)' ng-mouseleave = 'dialgOut(value)')
 									span(class = "Evalutaion") {{dialgEvalutaion}}
 						div(class="tags-switch")
-							a(id="showtags" rel="高级(标签和短评) ▼" href="javascript:void(0)") 缩起 ▲
-					ul(id="advtags" class="interest_form")
+							a(id="showtags" rel="高级(标签和短评) ▼" href="javascript:void(0)" ng-click = 'ifStretch()') 缩起 ▲
+					ul(id="advtags" class="interest_form" ng-show = 'dialgStretch')
 						li 标签(多个标签用空格分隔):
 						li
 							input(name='tags' type='text' class='inp-tags')
@@ -33,33 +33,24 @@ block content
 							dl
 								dt 我的标签:
 							dd
-								span(class='tagbtn gract') 搞笑
+								span(ng-repeat='item in mytagbtnitems'  ng-class="{'tagbtn':true, 'gract': item.isgract, 'rdact': !item.isgract}" ng-click = "addtag('mytag',$index)") {{item.name}}
 						li(id="populartags" class="clearfix")
 							dl
 								dt 常用标签:
 							dd
-								span(class='tagbtn gract') 香港
-								span(class='tagbtn gract') 惊险
-								span(class='tagbtn gract') 心理
-								span(class='tagbtn gract') 剧情
-								span(class='tagbtn gract') 动作
-								span(class='tagbtn gract') 犯罪
-								span(class='tagbtn gract') 2016
-								span(class='tagbtn gract') 悬疑
-								span(class='tagbtn gract') 电影
-								span(class='tagbtn gract') 惊险
+								span(ng-repeat='item in tagbtnitems'  ng-class="{'tagbtn':true, 'gract': item.isgract, 'rdact': !item.isgract}" ng-click = "addtag('populartag',$index)") {{item.name}}
 						li(class="comment-label")
 							span(id="left_n" class="num") 140
 							span 简短评论:
 						li
 							textarea(name="comment" class="comment" id="comment" maxlength="350")
 						li(class="private")
-							input(id="inp-private" name="private" type="checkbox")
+							input(id="inp-private" name="private" type="checkbox" ng-click = 'setPrivate()')
 							label(class="pl" for="inp-private") 仅自己可见
 					div(class="interest-form-ft" id="submits")
 						div(class="sync-setting pl")
 							label 分享到
-							label(class="share-label share-shuo" for="share-shuo")
+							label(ng-class="{'share-label':true, 'share-shuo':true, 'greyinput':isgreyinput}" for="share-shuo")
 								input(id="share-shuo" name="share-shuo" value="douban" type="checkbox" checked="checked")
 								span 豆瓣广播
 							a(id="lnk-sync-setting" class="no-visited no-hover" href="https://movie.douban.com/settings/sync" target="_blank")
