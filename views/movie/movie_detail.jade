@@ -182,10 +182,9 @@ block content
 									span(class='want')	想看
 								a(href='#',class='collect_btn colbutt ll')
 									span(class='saw')  看过
-								div(class='stars')
-									span 评价：
+								div(class='ll j a_stars') 评价：
 									span(id='rating')
-										span(id='star')
+										span(id='stars')
 											a(href='javascript:;' class='j a_collect_btn' name='pbtn-1' ng-repeat="evalutaion in Evalutaions" )
 												img(src='/img/star_hollow_hover.png' id='star1' width='16' height='16' ng-mouseover='over($index)' ng-mouseleave = 'out()' ng-click = 'choose($index)')
 									span(class = "Evalutaion") {{Evalutaion}}

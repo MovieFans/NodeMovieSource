@@ -9,12 +9,12 @@ app.controller('evalutaionCtrl', function($scope) {
 	$scope.ifWant = false;
 	$scope.over = function( index ){
 		$scope.Evalutaion = $scope.Evalutaions[index];
-		$("#star").find("a:lt("+(index+1)+") img").attr("src","/img/star_onmouseover.png");
+		$("#stars").find("a:lt("+(index+1)+") img").attr("src","/img/star_onmouseover.png");
 	}
 
 	$scope.out = function(){
 		$scope.Evalutaion = "";
-		$("#star a img").attr("src","/img/star_hollow_hover.png");
+		$("#stars a img").attr("src","/img/star_hollow_hover.png");
 	}
 
 	//监听：若收到change，把值广播出去
@@ -84,25 +84,21 @@ app.controller('dialogCtrl', function($scope) {
 	}
 
 	$scope.addtag = function(tagtype,index){
+		var thistabs;
 		if(tagtype == "populartag"){
-			if($scope.tagbtnitems[index].isgract){
-				$scope.tagInputValue += $scope.tagbtnitems[index].name +" ";
-				$('.inp-tags').val("").focus().val($scope.tagInputValue);
-			}else{
-				$scope.tagInputValue = $scope.tagInputValue.replace($scope.tagbtnitems[index].name +" ","");
-				$('.inp-tags').val("").focus().val($scope.tagInputValue);
-			}
-				$scope.tagbtnitems[index].isgract = !$scope.tagbtnitems[index].isgract;
+			thistabs = $scope.tagbtnitems;
+
 		}else if(tagtype == "mytag"){
-			if($scope.mytagbtnitems[index].isgract){
-				$scope.tagInputValue += $scope.mytagbtnitems[index].name +" ";
-				$('.inp-tags').val("").focus().val($scope.tagInputValue);
-			}else{
-				$scope.tagInputValue = $scope.tagInputValue.replace($scope.mytagbtnitems[index].name +" ","");
-				$('.inp-tags').val("").focus().val($scope.tagInputValue);
-			}
-			$scope.mytagbtnitems[index].isgract = !$scope.mytagbtnitems[index].isgract;
+			thistabs = $scope.mytagbtnitems;
 		}
+		if(thistabs[index].isgract){
+			$scope.tagInputValue += thistabs[index].name +" ";
+			$('.inp-tags').val("").focus().val($scope.tagInputValue);
+		}else{
+			$scope.tagInputValue = $scope.tagInputValue.replace(thistabs[index].name +" ","");
+			$('.inp-tags').val("").focus().val($scope.tagInputValue);
+		}
+		thistabs[index].isgract = !thistabs[index].isgract;
 	}
 
 	$scope.setPrivate = function(){
