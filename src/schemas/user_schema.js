@@ -3,6 +3,7 @@
  */
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
+// 定义加密密码计算强度
 var SALT_WORK_FACTOR = 10;
 
 var UserSchema = new mongoose.Schema({
@@ -31,7 +32,7 @@ var UserSchema = new mongoose.Schema({
 		}
 	}
 })
-
+// 使用pre中间件在用户信息存储前进行密码加密
 UserSchema.pre('save', function(next) {
 	var user = this;
 
@@ -40,7 +41,7 @@ UserSchema.pre('save', function(next) {
 	}else {
 		this.meta.updateAt = Date.now();
 	}
-
+  // 进行加密（加盐）
 	bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
 		if(err) return next(err);
 		bcrypt.hash(user.password, salt, null, function(err, hash) {

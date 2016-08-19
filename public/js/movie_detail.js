@@ -50,6 +50,7 @@ app.controller('dialogCtrl', function($scope) {
 		{"name":"爱情","isgract":true}];
 	$scope.tagInputValue = "";
 	$scope.isgreyinput = false;
+	$scope.thisusername = "liy" + Math.floor(Math.random() * 1e6);
 
 	//监听父controller的广播，得到changeFromBody广播时取$scope.value
 	$scope.$on("changeFromBody",function (event, msg) {

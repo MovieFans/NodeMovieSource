@@ -1,0 +1,128 @@
+extends ../layout
+
+block content
+	include ../includes/head
+	script(src='/js/jquery.cityselect.js')
+	script(src='/js/movie_seat.js')
+	script(type='text/javascript').
+		$(function(){
+			$("#city_1").citySelect({
+				prov:"广东",
+				city:"深圳"
+			});
+		});
+	div(ng-app="myApp" ng-controller="movieSeatCtrl")
+		div(id='db-nav-movie',class='nav')
+			div(class='nav-wrap')
+				div(class='nav-primary')
+					div(class='nav-logo')
+						a(href='#') 豆瓣电影
+					div(class='nav-search')
+						form(method='get',action='/movie/movDetail')
+							fieldset
+								legend 搜索
+								label(for='inp-query',style='display:none') 电影、影人、影院、电视剧
+								div(class='inp')
+									input(id='inp-query',name='search-text',class='placeholder',size='22',maxlength='60',placeholder='电影、影人、影院、电视剧',autocomplete='off')
+								div(class='inp-btn')
+									input(type='submit',value='搜索')
+								input(type="hidden", name="cat", value="1002")
+						a(href='#',target='_blank',class='ban-filmawards')
+							img(src='/img/xinxiang_6th_nav.png',alt='豆瓣电影观影报告')
+			div(class='nav-secondary')
+				div(class='nav-items nav-anon')
+					ul
+						mixin parameters(name,url)
+							li
+								a(href='#{url}') #{name}
+						+parameters('影讯&购票','#')
+						+parameters('选电影','#')
+						+parameters('电视剧','#')
+						+parameters('排行榜','#')
+						+parameters('分类','#')
+						+parameters('影评','#')
+						+parameters('2015年度榜单','#')
+						+parameters('豆瓣观影报告','#')
+		div(id='wrap')
+			div(id='content')
+				h1 #{movie.moviename} 在线购票&影讯
+				div(class='grid-16-8 clearfix')
+					div(class='article')
+						div(id='date-bar' data-date='2016-08-17' data-is-today='true')
+							span(class='tit') 放映日期：
+							ul
+								li(ng-repeat="date in dates")
+									a(href='javascript:void(0);') {{date}}
+						div(id='city-zone-bar')
+							div(id="city-zone")
+								strong(id='city-id' data-city-id='118282') 深圳
+								ul(id='zone-id' data-zone-id="None")
+									li(ng-repeat="city in cities")
+										a(href='javascript:void(0);') {{city}}
+						div(id='toolbar')
+							span(id='geo-location')
+								a(href='javascript:void(0);') 定位到附近的影院
+							div(id='cinemas-suggestion')
+								div(id='cinemas-suggestion-input')
+									input(type='text' placeholder="搜索本地影院" class="placeholder" autocomplete="off")
+									a(id='cinemas-suggestion-search') 搜影院
+								div(id='cinemas-suggestion-list' style='display: none;')
+									h4 可售票影院
+									ul(class='auto-tip')
+										li
+											a(href='javascript:void(0);')
+						div(id='cinema-list-wrap' data-subject-id='26336253' data-city-uid='shenzhen')
+							each cenima in cenimas
+								div(class='cinema-item' data-id='110093')
+									div(class='hd')
+										h3 #{cenima.name}
+										span 票价 #{cenima.bottomPrice} - #{cenima.topPrice} 元
+										span(class='font_green') 可购票
+										a(class="cinema-site" href='javascript:void(0);') 去影院
+									div(class='bd' style='display: block;')
+										div(class='cinema-info')
+											p
+												span #{cenima.address}
+										div(class='cinema-schedule')
+											ul(class='cinema-date')
+												li(class='now')
+													a(data-date="2016-08-18" href="javascript:void(0);") #{cenima.releaseDate}(今天)
+											div(class='versions')
+												each movieinfo in cenima.movieInfos
+													div(class='version-item')
+														div(class='version-hd')
+															span #{movieinfo.digital}
+															span #{movieinfo.type}
+															span #{movieinfo.duration}分钟
+															span 豆瓣售价 #{movieinfo.price} 元
+														div(class='version-bd')
+															ul
+																each time in movieinfo.times
+																	li #{time}
+					div(class='aside')
+						div(id='movie-info')
+							div(id='movie-subject-page')
+								a(href='javascript:void(0);') > 去"#{movie.moviename}"的页面
+							div(class='movie-summary')
+								div(class='movie-pic')
+									a(href='javascript:void(0);')
+										img(alt="#{movie.moviename}" title="#{movie.moviename}" src='#{movie.moviepic}')
+								span(class='attrs')
+									p
+										span(class='pl') 导演:
+										a(href='javascript:void(0);') #{movie.director}
+									p
+										span(class='pl') 主演:
+										a(href='javascript:void(0);') #{movie.actors}
+									p
+										span(class='pl') 类型:
+										a(href='javascript:void(0);') #{movie.type}
+									p
+										span(class='pl') 地区:
+										a(href='javascript:void(0);') #{movie.countries}
+									p
+										span(class='pl') 片长:
+										a(href='javascript:void(0);') #{movie.meta.runtime}
+									p
+										span(class='pl') 上映:
+										a(href='javascript:void(0);') #{moment(movie.meta.showDate).format('YYYY/MM/DD')}

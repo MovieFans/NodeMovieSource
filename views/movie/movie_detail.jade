@@ -15,6 +15,8 @@ block content
 							a(href="javascript:;" class="fa fa-times")
 						h2 添加收藏：我看过这部电影
 					div(class="topbar-wrapper")
+						input(id='thisusername', name='thisusername', class="ll", type="hidden", value="{{thisusername}}")
+						input(id='thismoviername', name='thismoviername', class="ll", type="hidden", value="#{movie.director}")
 						span(class="interest-rating")
 							div(class="j a_stars")
 								span(class="rate_stars") 给个评价吧?(可选):
@@ -23,6 +25,7 @@ block content
 											a(href='javascript:;' class='j a_collect_btn' name='pbtn-1' ng-repeat="evalutaion in dialgEvalutaions" )
 												img(src='/img/star_hollow_hover.png' width='16' height='16' ng-mouseover='dialgOver($index)' ng-mouseleave = 'dialgOut(value)')
 									span(class = "Evalutaion") {{dialgEvalutaion}}
+									input(id='starvalue', name='starvalue', class="hiddenInput" type="hidden" value="{{value}}")
 						div(class="tags-switch")
 							a(id="showtags" rel="高级(标签和短评) ▼" href="javascript:void(0)" ng-click = 'ifStretch()') 缩起 ▲
 					ul(id="advtags" class="interest_form" ng-show = 'dialgStretch')
@@ -45,7 +48,7 @@ block content
 						li
 							textarea(name="comment" class="comment" id="comment" maxlength="350")
 						li(class="private")
-							input(id="inp-private" name="private" type="checkbox" ng-click = 'setPrivate()')
+							input(id="inp-private" name="inp-private" type="checkbox" ng-click = 'setPrivate()')
 							label(class="pl" for="inp-private") 仅自己可见
 					div(class="interest-form-ft" id="submits")
 						div(class="sync-setting pl")
@@ -93,8 +96,8 @@ block content
 		div(id='wrap')
 			div(id='content')
 				h1
-					span(id='moviename')	#{movie.moviename}
-					span(class='year')	(2016)
+					span(id='moviename') #{movie.moviename}
+					span(class='year') (2016)
 				div(class='grid-16-8 clearfix')
 					div(class='article')
 						div(class='indent clearfix')
